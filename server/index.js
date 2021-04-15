@@ -1,11 +1,28 @@
-// require list of todos in STORE.js
-// install and require express
-// install and require cors
-// execute express() to app variable
+const listoftodos = require("./STORE");
+const express = require("express");
+const cors = require("cors");
+const PORT = 8080;
+const app = express();
 
-// create a /todo route to return all of our todos
+app.get("/todos", cors(), function (req, res) {
+      res.status(200).send(listoftodos);
+});
 
-// create a /health route just to check that our API is healthy
+app.get("/health", function (req, res) {
+   res.status(200).send("<h3>Server is healthy</h3>")
+});
+
+app.listen(PORT, () => {
+   console.log(`Server is listening on port ${PORT}`)
+});
+
+
+
+
+
+
+
+
 
 /*
 

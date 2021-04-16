@@ -4,17 +4,26 @@ const cors = require("cors");
 const PORT = 8080;
 const app = express();
 
+
 app.get("/todos", cors(), function (req, res) {
-      res.status(200).send(listoftodos);
+   res.status(200).send(listoftodos);
 });
 
 app.get("/health", function (req, res) {
    res.status(200).send("<h3>Server is healthy</h3>")
 });
 
-app.get("/delete"), cors(), function (req, res) {
-   res.status(200).send("<h3>Delete page, eventually will show todos - 1</h3>")
-}
+app.get("/delete/:id", cors(), function (req, res) {
+   const idToDelete = req.params.id;
+   console.log(idToDelete);
+   let findToDo = null;
+   listoftodos.forEach((item,i) => {
+      if (item.id === idToDelete)
+      findToDo = i});
+      console.log(findToDo);
+      listoftodos.splice(findToDo, 1);
+      res.status(200).send(listoftodos);
+   });
 
 app.listen(PORT, () => {
    console.log(`Server is listening on port ${PORT}`)
@@ -36,7 +45,7 @@ app.listen(PORT, () => {
 
   1. create a route for editing posts (complete and edit text)
   2. create a route to delete a post
-  
+
   /client
 
   1. Add appropriate fetch requests to make your todo app to use data from our server

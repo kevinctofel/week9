@@ -12,6 +12,10 @@ app.get("/health", function (req, res) {
    res.status(200).send("<h3>Server is healthy</h3>")
 });
 
+app.get("/delete"), cors(), function (req, res) {
+   res.status(200).send("<h3>Delete page, eventually will show todos - 1</h3>")
+}
+
 app.listen(PORT, () => {
    console.log(`Server is listening on port ${PORT}`)
 });

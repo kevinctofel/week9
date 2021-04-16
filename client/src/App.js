@@ -1,13 +1,21 @@
-import {useState} from 'react';
-import { listoftodos } from './STORE';
+import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import './App.css';
 
 import { v4 as uuidv4 } from 'uuid';
 
+
 function App() {
-   const [todos, setTodos] = useState(listoftodos);
+   const [todos, setTodos] = useState([]);
+
+   useEffect(() => {
+
+    fetch('http://localhost:8080/todos')
+      .then((response) => response.json())
+      .then((data) => setTodos(data))
+      .catch((error) => console.log(error))
+   },[]) // run one time only when App renders
 
   const addTodo = text => {
     const newTodos = [

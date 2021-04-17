@@ -4,6 +4,8 @@ const cors = require("cors");
 const PORT = 8080;
 const app = express();
 
+app.use(cors());
+app.use(express.json()); // Have to use this before routes to parse JSON
 
 app.get("/todos", cors(), function (req, res) {
    res.status(200).send(listoftodos);
@@ -11,6 +13,12 @@ app.get("/todos", cors(), function (req, res) {
 
 app.get("/health", function (req, res) {
    res.status(200).send("<h3>Server is healthy</h3>")
+});
+
+app.post("/add", cors(), function (req, res) {
+   const {id, text, isCompleted} = req.body;
+   listoftodos.push({id, text, isCompleted});
+   res.status(200).send(listoftodos);
 });
 
 app.get("/delete/:id", cors(), function (req, res) {

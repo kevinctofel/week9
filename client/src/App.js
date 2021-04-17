@@ -18,15 +18,19 @@ function App() {
   }, []) // run one time only when App renders
 
   const addTodo = text => {
-    const newTodos = [
-      ...todos,
-      {
-        id: uuidv4(),
-        text: text,
-        isCompleted: false
-      }
-    ];
-    setTodos(newTodos);
+    const newTodoBody = {
+      id: uuidv4(),
+      text: text,
+      isCompleted: false
+    }
+    fetch('http://localhost:8080/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTodoBody)
+    })
+      .then((response) => response.json())
+      .then((data) => setTodos(data))
+      .catch((error) => console.log(error))
   };
 
   const completeTodo = id => {
@@ -37,9 +41,6 @@ function App() {
   };
 
   const deleteTodo = id => {
-    // const temporaryTodos = [...todos]; 
-    // const newTodos = temporaryTodos.filter(todo => todo.id !== id);
-    // setTodos(newTodos);
 
     fetch('http://localhost:8080/delete/' + id)
       .then((response) => response.json())

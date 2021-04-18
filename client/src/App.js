@@ -33,6 +33,22 @@ function App() {
       .catch((error) => console.log(error))
   };
 
+  const editTodo = (id, text) => {
+
+    const updatedToDoBody = {
+      id: id,
+      text: text
+    }
+    fetch('http://localhost:8080/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedToDoBody)
+    })
+      .then((response) => response.json())
+      .then((data) => setTodos(data))
+      .catch((error) => console.log(error))
+  }
+
   const completeTodo = id => {
     const temporaryTodos = [...todos];
     const index = temporaryTodos.findIndex(todo => todo.id === id);
@@ -47,13 +63,6 @@ function App() {
       .then((data) => setTodos(data))
       .catch((error) => console.log(error))
   };
-
-  const editTodo = (id, text) => {
-    const temporaryTodos = [...todos];
-    const index = - temporaryTodos.findIndex(todo => todo.id === id);
-    temporaryTodos[index].text = text;
-    setTodos(temporaryTodos);
-  }
 
   return (
     <>

@@ -21,6 +21,13 @@ app.post("/add", cors(), function (req, res) {
    res.status(200).send(listoftodos);
 });
 
+app.post("/update", cors(), function (req, res) {
+   const {id, text} = req.body;
+   const index = listoftodos.findIndex((todo) => todo.id === id);
+   listoftodos[index].text = text;
+   res.status(200).send(listoftodos);
+});
+
 app.get("/delete/:id", cors(), function (req, res) {
    const idToDelete = req.params.id;
    console.log(idToDelete);

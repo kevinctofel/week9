@@ -49,10 +49,9 @@ function App() {
       .catch((error) => console.log(error))
   }
 
-  const completeTodo = (id, isCompleted) => {
+  const completeTodo = (id) => {
     const completedToDoBody = {
-      id: id,
-      isCompleted: isCompleted
+      id: id
     }
     fetch('http://localhost:8080/complete', {
       method: 'POST',

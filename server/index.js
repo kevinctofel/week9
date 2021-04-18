@@ -22,7 +22,7 @@ app.post("/add", cors(), function (req, res) {
    res.status(200).send(listoftodos);
 });
 
-app.post("/update", cors(), function (req, res) {
+app.post("/update", cors(), function (req, res, next) {
    const {id, text} = req.body;
    const index = listoftodos.findIndex((todo) => todo.id === id);
    listoftodos[index].text = text;
@@ -30,10 +30,9 @@ app.post("/update", cors(), function (req, res) {
 });
 
 app.post("/complete", cors(), function (req, res) {
-   const {id, isCompleted} = req.body;
-   console.log(req.body);
+   const {id} = req.body;
    const index = listoftodos.findIndex((todo) => todo.id === id);
-   listoftodos[index].isCompleted = !(isCompleted);
+   listoftodos[index].isCompleted = !listoftodos[index].isCompleted;
    res.status(200).send(listoftodos);
 });
 

@@ -33,6 +33,8 @@ app.post("/complete", cors(), function (req, res) {
    const {id} = req.body;
    const index = listoftodos.findIndex((todo) => todo.id === id);
    listoftodos[index].isCompleted = !listoftodos[index].isCompleted;
+   // Originally had this, which doesn't work.
+   // listoftodos[index].isCompleted = !isCompleted;
    res.status(200).send(listoftodos);
 });
 

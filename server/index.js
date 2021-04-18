@@ -17,6 +17,7 @@ app.get("/health", function (req, res) {
 
 app.post("/add", cors(), function (req, res) {
    const {id, text, isCompleted} = req.body;
+   console.log(req.body);
    listoftodos.push({id, text, isCompleted});
    res.status(200).send(listoftodos);
 });
@@ -28,14 +29,20 @@ app.post("/update", cors(), function (req, res) {
    res.status(200).send(listoftodos);
 });
 
+app.post("/complete", cors(), function (req, res) {
+   const {id, isCompleted} = req.body;
+   console.log(req.body);
+   const index = listoftodos.findIndex((todo) => todo.id === id);
+   listoftodos[index].isCompleted = !(isCompleted);
+   res.status(200).send(listoftodos);
+});
+
 app.get("/delete/:id", cors(), function (req, res) {
    const idToDelete = req.params.id;
-   console.log(idToDelete);
    let findToDo = null;
    listoftodos.forEach((item,i) => {
       if (item.id === idToDelete)
       findToDo = i});
-      console.log(findToDo);
       listoftodos.splice(findToDo, 1);
       res.status(200).send(listoftodos);
    });

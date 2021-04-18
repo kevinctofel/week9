@@ -49,11 +49,19 @@ function App() {
       .catch((error) => console.log(error))
   }
 
-  const completeTodo = id => {
-    const temporaryTodos = [...todos];
-    const index = temporaryTodos.findIndex(todo => todo.id === id);
-    temporaryTodos[index].isCompleted = !temporaryTodos[index].isCompleted;
-    setTodos(temporaryTodos);
+  const completeTodo = (id, isCompleted) => {
+    const completedToDoBody = {
+      id: id,
+      isCompleted: isCompleted
+    }
+    fetch('http://localhost:8080/complete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(completedToDoBody)
+    })
+      .then((response) => response.json())
+      .then((data) => setTodos(data))
+      .catch((error) => console.log(error))
   };
 
   const deleteTodo = id => {

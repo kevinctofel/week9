@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import './App.css';
+import Typography from '@material-ui/core/Typography';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -73,8 +74,8 @@ function App() {
 
   return (
     <>
-      <h2>Todo App</h2>
-      <h4>Add new todos via the input field:</h4>
+      <Typography><h2>Todo App</h2></Typography>
+      <Typography><h4>Add new todos via the input field:</h4></Typography>
       <TodoForm addTodo={addTodo} />
       <TodoList
         todos={todos}

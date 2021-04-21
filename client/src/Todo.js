@@ -1,4 +1,7 @@
 import {useState} from "react";
+import { Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
 
 function Todo({ todo, completeTodo, deleteTodo, editTodo }) {
 
@@ -54,14 +57,14 @@ function Todo({ todo, completeTodo, deleteTodo, editTodo }) {
               {!edit ? (
                   <>
                       <span style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}> {todo.text} </span>
-                      <button onClick ={() => deleteTodo(todo.id)}>X</button>
-                      <button onClick={() => toggleEdit()} disabled={todo.isCompleted}>Edit</button>
+                      <Button variant="contained" color="secondary" size='small' startIcon={<DeleteIcon />} onClick ={() => deleteTodo(todo.id)}>Delete</Button>
+                      <Button variant="contained" color="primary" size='small' onClick={() => toggleEdit()} disabled={todo.isCompleted}>Edit</Button>
                   </>   
               ) : (
                   <>
                       <input type="text" value={text}  onChange={handleEdit} />
-                      <button disabled = {error} onClick={() => handleUpdate(todo.id, text)}>Update</button>
-                      <button onClick={() => toggleEdit()}> Cancel </button>
+                      <Button variant="contained" color="primary" size='small' startIcon={<SaveIcon />} disabled = {error} onClick={() => handleUpdate(todo.id, text)}>Update</Button>
+                      <Button variant="contained" color="secondary" size='small' onClick={() => toggleEdit()}> Cancel </Button>
                  </>
               )} 
         </li>

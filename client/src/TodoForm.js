@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import { TextField, Button } from '@material-ui/core';
+import 'fontsource-roboto';
 
 function TodoForm({addTodo}) {
     const [errorMessage, setErrorMessage] = useState("");
@@ -26,13 +28,14 @@ function TodoForm({addTodo}) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input
+                <TextField
+                    id="standard-basic"
                     type="text"
                     className="input"
                     value={value}
                     onChange={handleChange}
                 />
-                <button>Add Todo</button>
+                <Button variant="contained" color="primary">Add Todo</Button>
             </form>
             <div className="error">{errorMessage}</div>
         </>

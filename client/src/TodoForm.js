@@ -35,7 +35,7 @@ function TodoForm({addTodo}) {
                     value={value}
                     onChange={handleChange}
                 />
-                <button variant="contained" color="primary">Add Todo</button>
+                <Button variant="contained" color="primary" size='small' type='submit'>Add Todo</Button>
             </form>
             <div className="error">{errorMessage}</div>
         </>

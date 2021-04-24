@@ -77,18 +77,17 @@ function App() {
     <>
       <Grid container direction="column"
         justify="center"
-        alignItems="center" spacing={3}>
-        <Grid item xs={12}>
-          <Typography color="primary"><h2>Todo App</h2></Typography></Grid>
-        <Grid item xs={12}> <Typography color="primary"><h3>Add new todos via the input field</h3></Typography></Grid>
-        <Grid item xs={12}><TodoForm addTodo={addTodo} /></Grid>
+        alignItems="center">
+        <Typography color="primary"><h1>Tasks to do</h1></Typography>
+        <Typography color="primary"><p>Add new tasks to the input field</p></Typography>
+        <TodoForm addTodo={addTodo} />
         <TodoList
           todos={todos}
           completeTodo={completeTodo}
           deleteTodo={deleteTodo}
           editTodo={editTodo}
         />
-    </Grid>
+      </Grid>
     </>
   );
 }

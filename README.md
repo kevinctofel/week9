@@ -4,7 +4,7 @@ We are converting our React ToDo app we did earlier in the course to pull inform
 
 ### Current app image
 
-<img src="https://github.com/kevinctofel/week9/blob/3fa3fae39ff590737d4fbe02d3d29b8399163e92/React%20to%20do%20app.png" height = 500/>)
+<img src="./images/React_ToDo_App.png" style="height: 400px; width:300px"/>
 
 #### Lab
 

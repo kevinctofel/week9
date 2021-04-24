@@ -3,6 +3,7 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import './App.css';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -74,15 +75,20 @@ function App() {
 
   return (
     <>
-      <Typography><h2>Todo App</h2></Typography>
-      <Typography><h4>Add new todos via the input field:</h4></Typography>
-      <TodoForm addTodo={addTodo} />
-      <TodoList
-        todos={todos}
-        completeTodo={completeTodo}
-        deleteTodo={deleteTodo}
-        editTodo={editTodo}
-      />
+      <Grid container direction="column"
+        justify="center"
+        alignItems="center" spacing={3}>
+        <Grid item xs={12}>
+          <Typography color="primary"><h2>Todo App</h2></Typography></Grid>
+        <Grid item xs={12}> <Typography color="primary"><h3>Add new todos via the input field</h3></Typography></Grid>
+        <Grid item xs={12}><TodoForm addTodo={addTodo} /></Grid>
+        <TodoList
+          todos={todos}
+          completeTodo={completeTodo}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+        />
+    </Grid>
     </>
   );
 }
